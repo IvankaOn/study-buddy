@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const UsersListItem = ({ userData: { average, name, attendance = "0%" } }) => (
   <li>
-    {console.log(userData)}
     <div>{average}</div>
     <div>
       <p>{name}</p>
@@ -13,7 +12,7 @@ const UsersListItem = ({ userData: { average, name, attendance = "0%" } }) => (
   </li>
 );
 
-UsersListItem.PropTypes = {
+UsersListItem.propTypes = {
   userData: PropTypes.shape({
     average: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
