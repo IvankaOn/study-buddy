@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Button from "components/atoms/Button/Button";
+import CircleButton from "components/atoms/CircleButton/CircleButton";
 import Average from "components/atoms/Average/Average";
 import { theme } from "assets/styles/theme";
+import { UserShape } from "types";
+import { UserContext } from "providers/UsersProvider";
 
 const Wrapper = styled.li`
   display: flex;
@@ -33,25 +35,23 @@ const UserListName = styled.p`
   line-height: 0.4;
 `;
 
-const UsersListItem = ({ userData: { average, name, attendance = "0%" } }) => (
-  <Wrapper>
-    <Average average={average} />
-    <div style={{ color: theme.colors.dark }}>
-      <UserListName>{name}</UserListName>
-      <span style={{ fontSize: theme.fontSize.s }}>
-        attendance: {attendance}
-      </span>
-    </div>
-    <Button />
-  </Wrapper>
-);
+const UsersListItem = ({ userData: { average, name, attendance = "0%" } }) => {
+  const { deleteUser } = useContext(UserContext);
+  return (
+    <Wrapper>
+      <Average average={average} />
+      <div style={{ color: theme.colors.dark }}>
+        <UserListName>{name}</UserListName>
+        <span style={{ fontSize: theme.fontSize.s }}>attendance: {attendance}</span>
+      </div>
+      <CircleButton onClick={() => deleteUser(name)} />
+    </Wrapper>
+  );
+};
 
 UsersListItem.propTypes = {
-  userData: PropTypes.shape({
-    average: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    attendance: PropTypes.string,
-  }),
+  userData: PropTypes.shape(UserShape),
+  deleteUser: PropTypes.func,
 };
 
 export default UsersListItem;

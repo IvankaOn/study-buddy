@@ -1,27 +1,49 @@
 import React from "react";
-import UsersList from "components/organisms/UsersList/UsersList";
-import styled, { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "assets/styles/globalStyle";
 import { theme } from "assets/styles/theme";
+import styled, { ThemeProvider } from "styled-components";
+import Navigation from "components/molecules/Navigation/Navigation";
+import SideBar from "components/atoms/SideBar/SideBar";
+import Logo from "components/atoms/Logo/Logo";
+import SearchBar from "components/atoms/SearchBar/SearchBar";
+import MainContainer from "components/atoms/MainContainer/MainContainer";
+import NewsFeed from "components/atoms/NewsFeed/NewsFeed";
+import Dashboard from "./Dashboard";
+import AddUser from "./AddUser";
+import UserProvider from "providers/UsersProvider";
 
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightGrey};
+const GlobalContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  /* width: ${() => `${window.innerWidth / 2}px`}; */
-  height: 100vh;
 `;
 
-const Root = () => (
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <Wrapper>
-      <UsersList />
-    </Wrapper>
-  </ThemeProvider>
-);
+const Root = () => {
+  return (
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <GlobalContainer>
+          <SideBar>
+            <Logo>
+              Study<br></br> Buddy
+            </Logo>
+            <Navigation />
+          </SideBar>
+          <MainContainer>
+            <UserProvider>
+              <SearchBar />
+              <Routes>
+                <Route path="/" exact element={<Dashboard />} />
+                <Route path="/add-user" element={<AddUser />} />
+              </Routes>
+            </UserProvider>
+          </MainContainer>
+          <NewsFeed>University news feed</NewsFeed>
+        </GlobalContainer>
+      </ThemeProvider>
+    </Router>
+  );
+};
 
 Root.prototype = {};
 

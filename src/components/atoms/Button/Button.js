@@ -1,31 +1,20 @@
-import React from "react";
 import styled from "styled-components";
-import { ReactComponent as DeleteIcon } from "assets/icons/delete-icon.svg";
 
-const StyledButton = styled.button`
-  width: 24px;
-  height: 24px;
-  background-color: ${({ theme }) => theme.colors.grey};
-  /*   background-color: ${(props) =>
-    props.secondary ? "#cw5wd6;" : "#c8c7d6;"}; */
-  border-radius: 50px;
+const Button = styled.button`
+  padding: 8px 25px;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  background-color: ${({ theme }) => theme.colors.lightPurple};
+  border-radius: 20px;
   border: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  margin-left: 14px;
-  svg {
-    width: 100%;
-    height: 100%;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.dark};
+  margin: 15px 0;
+  cursor: pointer;
+  &:hover {
+    transition: 0.3;
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.easyGrey};
   }
 `;
-
-const Button = () => (
-  <StyledButton>
-    <DeleteIcon />
-  </StyledButton>
-);
 
 export default Button;
