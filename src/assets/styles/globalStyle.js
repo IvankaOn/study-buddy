@@ -12,6 +12,8 @@ box-sizing: border-box;
 }
 body {
 font-family: 'Montserrat', sans-serif;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
+
 }
 a, button {
 font-family: 'Montserrat', sans-serif;

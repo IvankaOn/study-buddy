@@ -1,11 +1,11 @@
 export const users = [
   {
-    name: "Adam Noweak",
+    name: "Loe Noweak",
     attendance: "23%",
     average: "1.1",
   },
   {
-    name: "Adam Noweak",
+    name: "Oli Noweak",
     attendance: "23%",
     average: "2.1",
   },
@@ -15,7 +15,7 @@ export const users = [
     average: "3.2",
   },
   {
-    name: "Adam Noweak",
+    name: "Aga Noweak",
     attendance: "23%",
     average: "4.1",
   },
